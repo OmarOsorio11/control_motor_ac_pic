@@ -1,0 +1,84 @@
+CCS PCM C Compiler, Version 5.015, 5967               29-mar.-21 20:00
+
+               Filename:   F:\Universidad\PIC CSS COMPILER AND PROTEUS\Programacion Y control de perifericos\Proyecto numero  (30)\PIC CSS Compiler\main.lst
+
+               ROM used:   30 words (1%)
+                           Largest free fragment is 2048
+               RAM used:   4 (1%) at main() level
+                           15 (4%) worst case
+               Stack used: 0 locations
+               Stack size: 16
+
+*
+0000:  MOVLP  00
+0001:  GOTO   003
+0002:  NOP
+.................... #include <16F1827.h> 
+.................... //////////// Standard Header file for the PIC16F1827 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F1827 
+....................  
+.................... #list 
+....................  
+.................... #device ADC=16 
+.................... #use delay(clock=4MHz,crystal=4MHz) 
+....................  
+.................... #define LED PIN_B0 
+.................... #define DELAY 1000 
+.................... void main() 
+0003:  MOVLB  03
+0004:  CLRF   0C
+0005:  CLRF   0D
+0006:  MOVLB  02
+0007:  CLRF   12
+0008:  CLRF   11
+0009:  CLRF   14
+000A:  CLRF   13
+.................... { 
+....................    set_tris_a(0b11111111); 
+000B:  MOVLW  FF
+000C:  TRIS   5
+....................    set_tris_b(0b00000000); 
+000D:  MOVLW  00
+000E:  TRIS   6
+....................    while(TRUE) 
+....................    { 
+....................       if(input_state(PIN_A0)) 
+000F:  MOVLB  00
+0010:  BTFSS  0C.0
+0011:  GOTO   018
+....................       { 
+....................          output_high(LED);    
+0012:  MOVLB  01
+0013:  BCF    0D.0
+0014:  MOVLB  02
+0015:  BSF    0D.0
+....................       } 
+0016:  GOTO   01C
+0017:  MOVLB  00
+....................       else  
+....................       { 
+....................          output_low(LED); 
+0018:  MOVLB  01
+0019:  BCF    0D.0
+001A:  MOVLB  02
+001B:  BCF    0D.0
+....................       } 
+001C:  GOTO   00F
+....................    } 
+.................... } 
+....................  
+001D:  SLEEP
+....................  
+
+Configuration Fuses:
+   Word  1: 3FC1   XT NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT NOCLKOUT IESO FCMEN
+   Word  2: 1EFF   NOWRT PLL_SW STVREN BORV19 NODEBUG NOLVP
